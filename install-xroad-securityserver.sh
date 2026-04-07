@@ -18,8 +18,8 @@ declare -r LOCALE_VALUE="en_US.UTF-8"
 ENABLE_OPMONITORING="${ENABLE_OPMONITORING:-true}"
 readonly ENABLE_OPMONITORING
 
-APPLY_BR_OVERRIDE="${APPLY_BR_OVERRIDE:-true}"
-readonly APPLY_BR_OVERRIDE
+APPLY_FI_OVERRIDE="${APPLY_FI_OVERRIDE:-true}"
+readonly APPLY_FI_OVERRIDE
 
 declare -r XROAD_KEYRING="/usr/share/keyrings/niis-artifactory-keyring.gpg"
 declare -r XROAD_LIST="/etc/apt/sources.list.d/xroad.list"
@@ -260,7 +260,7 @@ criar_usuario_admin() {
        [[ "$admin" != "admin" ]] &&
        [[ "$admin" != "xroad" ]] &&
        [[ ${#admin} -ge 3 && ${#admin} -le 32 ]]; then
-      break
+      FIeak
     fi
 
     log ERRO "Invalid or reserved name. Try again."
@@ -339,17 +339,17 @@ habilitar_opmonitoring() {
   log OK "Operational monitoring enabled"
 }
 
-# ===== BR Configuration =====
+# ===== FI Configuration =====
 configurar_override() {
-  local -r f="/etc/xroad/conf.d/override-securityserver-br.ini"
+  local -r f="/etc/xroad/conf.d/override-securityserver-fi.ini"
 
-  log INFO "Applying BR override..."
+  log INFO "Applying FI override..."
 
   install -d -m 0755 "$(dirname "$f")" \
     || die "Failed to create configuration directory"
 
   cat > "$f" <<'OVERRIDE'
-; BR security server configuration overrides
+; FI security server configuration overrides
 [signer]
 key-length=3072
 enforce-token-pin-policy=true
@@ -380,7 +380,7 @@ OVERRIDE
   chmod 0640 "$f" || die "Failed to set permissions on $f"
   runuser -u xroad -- test -r "$f" || die "User xroad cannot read $f"
 
-  log OK "BR override applied: $f"
+  log OK "FI override applied: $f"
 }
 
 configurar_mail_stub() {
@@ -496,10 +496,10 @@ main() {
     log INFO "Operational monitoring disabled by configuration"
   fi
 
-  if [[ "$APPLY_BR_OVERRIDE" == "true" ]]; then
+  if [[ "$APPLY_FI_OVERRIDE" == "true" ]]; then
     configurar_override
   else
-    log INFO "BR override disabled by configuration"
+    log INFO "FI override disabled by configuration"
   fi
 
   configurar_mail_stub

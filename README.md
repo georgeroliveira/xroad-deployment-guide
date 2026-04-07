@@ -2,7 +2,7 @@
 
 Bash scripts for installing and managing X-Road components on Ubuntu 24.04 (x86_64).
 
-Maintained by [George Rodrigues de Oliveira](https://github.com/georgeroliveira) — Ignitek Digital / X-Via Tecnologia LTDA.
+Maintained by [George Rodrigues de Oliveira](https://github.com/georgeroliveira) — Ignitek Digital.
 
 ---
 
@@ -170,12 +170,6 @@ After removing a previously installed Security Server from the same host, system
 | Autologin installation | `/var/log/xroad-autologin-install.log` |
 | Removal | `/var/log/xroad-remove.log` |
 | X-Road services | `/var/log/xroad/` |
-
----
-
-## Standards
-
-All scripts follow the conventions defined in [`xroad-bash-standards.md`](./xroad-bash-standards.md).
 
 ---
 
