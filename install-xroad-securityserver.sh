@@ -260,7 +260,7 @@ criar_usuario_admin() {
        [[ "$admin" != "admin" ]] &&
        [[ "$admin" != "xroad" ]] &&
        [[ ${#admin} -ge 3 && ${#admin} -le 32 ]]; then
-      FIeak
+      break
     fi
 
     log ERRO "Invalid or reserved name. Try again."
